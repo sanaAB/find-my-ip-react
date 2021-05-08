@@ -66,8 +66,8 @@ return (
       </div>
     ) : (
       <div>
-      <Card ipAddress={ipAddress} />
-      <Map lat={lat} lng={lng}  country={country}/>
+      <Card ipAddress={ipAddress} country={country}/>
+      <Map lat={lat} lng={lng}  />
       </div>
     )
     }
