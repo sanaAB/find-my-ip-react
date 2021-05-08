@@ -11,6 +11,8 @@ const [lat, setLat] = useState("51.505 ");
 const [lng, setLong] = useState("-0.09 ");
 const [isLoading, setIsLoading] = useState(true);
 const [country, setCountry] = useState("sy");
+const [city, setCity] = useState("Aleppo");
+
 
 
 //const APIkey = process.env.REACT_APP_IPFY_API_KEY;
@@ -45,7 +47,7 @@ useEffect(() => {
       if(response.ok)
         {  
           const jsonResponse = await response.json();
-          console.log(jsonResponse);
+          setCountry(jsonResponse.name)
           return;
         }
     }
