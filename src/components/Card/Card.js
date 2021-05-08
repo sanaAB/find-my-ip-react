@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard( {ipAddress, isLoading, country}) {
+export default function MediaCard( {ipAddress, isLoading, country,city}) {
   const classes = useStyles();
 
   return (
@@ -29,7 +29,7 @@ export default function MediaCard( {ipAddress, isLoading, country}) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={city}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -37,7 +37,7 @@ export default function MediaCard( {ipAddress, isLoading, country}) {
             Your IP address is: {ipAddress}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            You are located in: {country}
+            You are located in: {country}, {city}
           </Typography>
         </CardContent>
       </CardActionArea>

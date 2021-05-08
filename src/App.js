@@ -47,7 +47,9 @@ useEffect(() => {
       if(response.ok)
         {  
           const jsonResponse = await response.json();
+          console.log(jsonResponse)
           setCountry(jsonResponse.name)
+          setCity(jsonResponse.flag)
           return;
         }
     }
@@ -68,7 +70,7 @@ return (
       </div>
     ) : (
       <div>
-      <Card ipAddress={ipAddress} country={country}/>
+      <Card ipAddress={ipAddress} country={country} city={city}/>
       <Map lat={lat} lng={lng}  />
       </div>
     )
