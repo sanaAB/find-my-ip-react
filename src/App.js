@@ -10,6 +10,9 @@ const [ipAddress, setIpAddress] = useState(" ");
 const [lat, setLat] = useState("51.505 ");
 const [lng, setLong] = useState("-0.09 ");
 const [isLoading, setIsLoading] = useState(true);
+const [country, setCountry] = useState("sy");
+
+
 //const APIkey = process.env.REACT_APP_IPFY_API_KEY;
 
 
@@ -23,7 +26,7 @@ useEffect(() => {
           setIpAddress(jsonResponse.ip);
           setLat(jsonResponse.location.lat)
           setLong(jsonResponse.location.lng)
-          console.log(jsonResponse);
+          setCountry(jsonResponse.location.country)
           setIsLoading(false);
           return;
         }
@@ -35,13 +38,43 @@ useEffect(() => {
   getIp();
 },[]);
 
-  return (
-    <div className="App">
-        <Card ipAddress={ipAddress} isLoading={isLoading}/>
-        <Map lat={lat} lng={lng}/>
+useEffect(() => {
+  const getInfo = async () => {
+    try {
+      const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`);
+      if(response.ok)
+        {  
+          const jsonResponse = await response.json();
+          console.log(jsonResponse);
+          return;
+        }
+    }
+    catch (error){
+      console.log(error);
+    }
+  }
+  getInfo();
+},[country]);
 
-    </div>
-  );
+return (
+  <div className="App">
+    <main>
+    {isLoading ? (
+      <div>
+      <p>Loading IP address...</p>
+      <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      </div>
+    ) : (
+      <div>
+      <Card ipAddress={ipAddress} />
+      <Map lat={lat} lng={lng}  country={country}/>
+      </div>
+    )
+    }
+    </main>
+  </div>
+);
 }
+
 
 export default App;
