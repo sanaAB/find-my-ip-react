@@ -7,10 +7,16 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { DateTime } from "luxon";
+
 
 const useStyles = makeStyles({
+  elevation:{
+    zIndex:20,
+    },
   root: {
     maxWidth: 345,
+
   },
   media: {
     height: 140,
@@ -19,6 +25,8 @@ const useStyles = makeStyles({
 
 export default function MediaCard( {ipAddress, isLoading, country,city}) {
   const classes = useStyles();
+  var now = DateTime.now();
+  console.log(now._zone.name);
 
   return (
       isLoading ? (
@@ -37,13 +45,22 @@ export default function MediaCard( {ipAddress, isLoading, country,city}) {
             Your IP address is: {ipAddress}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            You are located in: {country}, {city}
+            You are located in: {country}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Zone: {now._zone.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+          Local time: {now.c.hour}:{now.c.minute}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+          Date: {now.c.day}/{now.c.month}/{now.c.year}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          share
         </Button>
         <Button size="small" color="primary">
           Learn More
