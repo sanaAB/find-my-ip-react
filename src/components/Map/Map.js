@@ -15,7 +15,6 @@ export default function Map({lat, lng}){
             </Popup>
         </Marker>
     </MapContainer>
-
     );
 
 }

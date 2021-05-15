@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     zIndex:"modal",
     },
   root: {
-    top: 80,
+    top: 120,
     left: 60,
     maxWidth: 250,
     position: 'absolute',
