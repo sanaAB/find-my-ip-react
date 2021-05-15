@@ -2,20 +2,27 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import "./Card.css";
 import { DateTime } from "luxon";
 
 
 const useStyles = makeStyles({
+  card:{
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+  }
+},
   elevation:{
-    zIndex:20,
+    zIndex:"modal",
     },
   root: {
-    maxWidth: 345,
+    maxWidth: 250,
+    position: 'absolute',
+    boxShadow:6,
 
   },
   media: {
@@ -23,50 +30,41 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard( {ipAddress, isLoading, country,city}) {
+
+export default function MediaCard( {ipAddress, isLoading, country,flag, city}) {
   const classes = useStyles();
   var now = DateTime.now();
-  console.log(now._zone.name);
+  var localTime = DateTime.local().toLocaleString(DateTime.DATETIME_FULL);
+  console.log(now);
 
   return (
       isLoading ? (
         <div className= "content">
         <h3> Loading news ...</h3><i className= "fa fa-spinner fa-pulse fa-3x fa-fw"></i>
        </div>) : (
+  <div className="" style={{display: "flex", justifyContent:"center"}}>
     <Card className={classes.root}  >
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={city}
-          title="Contemplative Reptile"
+          image={flag}
+          title="Country flag"
+          alt = "Country flag"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Your IP address is: {ipAddress}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            You are located in: {country}
+            You are located in: {city}/{country}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Zone: {now._zone.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-          Local time: {now.c.hour}:{now.c.minute}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-          Date: {now.c.day}/{now.c.month}/{now.c.year}
+             {localTime}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
     </Card>
+  </div>
   ));
 }
 
@@ -84,17 +82,3 @@ export default function MediaCard( {ipAddress, isLoading, country,city}) {
 
 
 
-
-
-
-// import React from "react";
-
-// export default function Card({ipAddress, isLoading}){
-//     return (
-//         isLoading ? (
-//             <div className= "content">
-//              <h3> Loading news ...</h3><i className= "fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-//             </div>) : (
-//     <h1>{ipAddress}</h1>)
-//     )
-// }

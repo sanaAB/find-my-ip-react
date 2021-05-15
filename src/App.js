@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Card from "./components/Card/Card"
 import Map from "./components/Map/Map"
@@ -10,8 +9,9 @@ const [ipAddress, setIpAddress] = useState(" ");
 const [lat, setLat] = useState("51.505 ");
 const [lng, setLong] = useState("-0.09 ");
 const [isLoading, setIsLoading] = useState(true);
-const [country, setCountry] = useState("sy");
-const [city, setCity] = useState("Aleppo");
+const [country, setCountry] = useState("");
+const [flag, setFlag] = useState(" ");
+const [city, setCity] = useState(" ")
 
 
 
@@ -25,10 +25,12 @@ useEffect(() => {
       if(response.ok)
         {  
           const jsonResponse = await response.json();
+          console.log(`from first API ${jsonResponse}`);
           setIpAddress(jsonResponse.ip);
           setLat(jsonResponse.location.lat)
           setLong(jsonResponse.location.lng)
           setCountry(jsonResponse.location.country)
+          setCity(jsonResponse.location.city)
           setIsLoading(false);
           return;
         }
@@ -43,13 +45,14 @@ useEffect(() => {
 useEffect(() => {
   const getInfo = async () => {
     try {
+      if(country === "") return;
       const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`);
       if(response.ok)
         {  
           const jsonResponse = await response.json();
           console.log(jsonResponse)
           setCountry(jsonResponse.name)
-          setCity(jsonResponse.flag)
+          setFlag(jsonResponse.flag)
           return;
         }
     }
@@ -63,6 +66,7 @@ useEffect(() => {
 return (
   <div className="App">
     <main>
+    <h1 className="header__style">What is my IP?</h1>
     {isLoading ? (
       <div>
       <p>Loading IP address...</p>
@@ -70,7 +74,7 @@ return (
       </div>
     ) : (
       <div>
-      <Card ipAddress={ipAddress} country={country} city={city}/>
+      <Card ipAddress={ipAddress} country={country} flag={flag} city={city}/>
       <Map lat={lat} lng={lng}  />
       </div>
     )
