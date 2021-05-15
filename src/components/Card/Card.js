@@ -10,20 +10,18 @@ import { DateTime } from "luxon";
 
 
 const useStyles = makeStyles({
-  card:{
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    "&:hover": {
-      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
-  }
-},
   elevation:{
     zIndex:"modal",
     },
   root: {
+    top: 80,
+    left: 60,
     maxWidth: 250,
     position: 'absolute',
-    boxShadow:6,
-
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+  },
   },
   media: {
     height: 140,
