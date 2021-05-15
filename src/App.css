@@ -35,6 +35,9 @@
 h1{
   text-shadow: 2px 2px #4a5c81;
 }
+.load__style{
+  height: 1000px;
+}
 
 footer {
   position: static;
@@ -45,7 +48,7 @@ footer {
   background-color: rgb(144, 151, 153);
   color: white;
   text-align: center;
-  box-shadow: 10px 5px 10px 10px #4a5c81; 
+  box-shadow: 50px 10px 10px 15px #4a5c81; 
 }
 .button__style{
   color: white;

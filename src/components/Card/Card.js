@@ -11,14 +11,14 @@ import { DateTime } from "luxon";
 
 const useStyles = makeStyles({
   elevation:{
-    zIndex:"modal",
+    zIndex:1,
     },
   root: {
     top: 120,
     left: 60,
     maxWidth: 250,
     position: 'absolute',
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    boxShadow: "0 25px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
   },
@@ -53,6 +53,7 @@ export default function MediaCard( {ipAddress, isLoading, country,flag, city}) {
           <Typography gutterBottom variant="h5" component="h2">
             Your IP address is: {ipAddress}
           </Typography>
+          <hr />
           <Typography variant="body2" color="textSecondary" component="p">
             You are located in: {city}/{country}
           </Typography>

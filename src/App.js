@@ -77,10 +77,10 @@ return (
     <main>
     <h1 className="header__style"><i className="fa fa-map-marker"></i>  What is my IP? </h1>
     {isLoading ? (
-      <div>
-      <p>Loading IP address...</p>
+    <div className="load__style">
+      <h4>Loading IP address...</h4>
       <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-      </div>
+    </div>
     ) : (
       <div>
       <Card ipAddress={ipAddress} country={country} flag={flag} city={city}/>
